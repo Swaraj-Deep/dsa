@@ -32,9 +32,6 @@ void GraphInput::takeInputDirected() {
   int u, v;
   for (int i = 0; i < edges; i++) {
     std::cin >> u >> v;
-    if (u == v) {
-      throw "Self-loop detected";
-    }
     inDegrees[v]++;
     adjacencyList[u].push_back(v);
   }
@@ -44,9 +41,6 @@ void GraphInput::takeInputUndirected() {
   int u, v;
   for (int i = 0; i < edges; i++) {
     std::cin >> u >> v;
-    if (u == v) {
-      throw "Self-loop detected";
-    }
     adjacencyList[u].push_back(v);
     adjacencyList[v].push_back(u);
   }
@@ -56,9 +50,6 @@ void GraphInput::takeInputWeightedAndDirected() {
   int u, v, weight;
   for (int i = 0; i < edges; i++) {
     std::cin >> u >> v >> weight;
-    if (u == v) {
-      throw "Self-loop detected";
-    }
     inDegrees[v]++;
     weightedAdjacencyList[u].push_back({v, weight});
   }
@@ -68,9 +59,6 @@ void GraphInput::takeInputWeightedAndUndirected() {
   int u, v, weight;
   for (int i = 0; i < edges; i++) {
     std::cin >> u >> v >> weight;
-    if (u == v) {
-      throw "Self-loop detected";
-    }
     weightedAdjacencyList[u].push_back({v, weight});
     weightedAdjacencyList[v].push_back({u, weight});
   }

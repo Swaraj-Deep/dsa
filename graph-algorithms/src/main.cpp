@@ -1,9 +1,9 @@
 #include <iostream>
 
-#include "topologicalsort.hpp"
+#include "cycleInUndirected.hpp"
 
 /**
- * Topological Sorting - DAG (Directed Acyclic Graph) ke liye mast hai Cycle
+ *  Cycle
 Detection - Graph mein cycle hai ya nahi, ye pata lagane ke liye Dijkstra's
 Algorithm - Shortest path nikalne ke liye, lekin negative edges nahi handle kar
 sakta Bellman-Ford Algorithm - Ye negative edges ke saath bhi kaam karta hai
@@ -22,15 +22,15 @@ int main() {
   std::cin >> nodes >> edges;
 
   try {
-    TopologicalSort topologicalSort(nodes, edges);
+    CycleInUndirected cycleInUndirected(nodes, edges);
 
-    topologicalSort.takeInputDirected();
+    cycleInUndirected.takeInputUndirected();
 
-    std::cout << "DFS Traversal: ";
-    topologicalSort.topologicalSortDfs();
-
-    std::cout << "BFS Traversal: ";
-    topologicalSort.topologicalSortBfs();
+    if (cycleInUndirected.detectCycleInUndirectedGraph()) {
+      std::cout << "Graph has cycle\n";
+    } else {
+      std::cout << "Graph has no cycle\n";
+    }
 
   } catch (const char* msg) {
     std::cout << "Error: " << msg << std::endl;
